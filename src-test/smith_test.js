@@ -48,7 +48,7 @@ var spritesmithUtils = {
 
       // DEV: Write out to actual_files
       if (process.env.TEST_DEBUG) {
-        try { fs.mkdirSync(__dirname + '/actual_files'); } catch (e) {}
+        try { fs.mkdirSync(__dirname + '/actual_files'); } catch (e) { /* Ignore error */ }
         fs.writeFileSync(__dirname + '/actual_files/' + filename, JSON.stringify(result.coordinates, null, 4));
       }
 
@@ -75,7 +75,7 @@ var spritesmithUtils = {
 
       // DEV: Write out to actual_files
       if (process.env.TEST_DEBUG) {
-        try { fs.mkdirSync(__dirname + '/actual_files'); } catch (e) {}
+        try { fs.mkdirSync(__dirname + '/actual_files'); } catch (e) { /* Ignore error */ }
         fs.writeFileSync(__dirname + '/actual_files/' + filename, JSON.stringify(result.properties, null, 4));
       }
 
@@ -94,7 +94,7 @@ var spritesmithUtils = {
 
       // DEV: Write out to actual_files
       if (process.env.TEST_DEBUG) {
-        try { fs.mkdirSync(__dirname + '/actual_files'); } catch (e) {}
+        try { fs.mkdirSync(__dirname + '/actual_files'); } catch (e) { /* Ignore error */ }
         fs.writeFileSync(__dirname + '/actual_files/' + filename, actualImageBuff);
       }
 
@@ -230,7 +230,7 @@ describe('`spritesmith` using a custom engine via an object', function () {
 var canvassmith;
 try {
   canvassmith = require('canvassmith');
-} catch (err) {}
+} catch (err) { /* Ignore error */ }
 var describeIfCanvassmithExists = canvassmith ? describe : describe.skip;
 describeIfCanvassmithExists('`spritesmith` using `canvassmith`', function () {
   describe('processing a bad image', function () {

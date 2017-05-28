@@ -24,10 +24,9 @@
     "node": ">= 0.10.0"
   },
   "scripts": {
-    "precheck": "twolfson-style precheck src/ src-test/",
-    "lint": "twolfson-style lint src/ src-test/",
-    "pretest": "twolfson-style install",
-    "test": "npm run precheck && mocha src-test/ --timeout 60000 --reporter dot && npm run lint"
+    "lint": "eslint src/ src-test/",
+    "lint-strict": "eslint src/ src-test/ --max-warnings 0",
+    "test": "npm run lint && mocha src-test/ --timeout 60000 --reporter dot && npm run lint-strict"
   },
   "dependencies": {
     "concat-stream": "~1.5.1",
@@ -38,6 +37,7 @@
   },
   "devDependencies": {
     "canvassmith": "~1.0.0",
+    "eslint": "~3.19.0",
     "foundry": "~4.3.2",
     "foundry-release-git": "~2.0.2",
     "foundry-release-npm": "~2.0.2",
