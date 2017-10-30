@@ -53,7 +53,7 @@ var spritesmithUtils = {
       }
 
       // Normalize the actual coordinates
-      var expectedCoords = require(expectedDir + '/' + filename);
+      var expectedCoords = global.require(expectedDir + '/' + filename);
       var actualCoords = result.coordinates;
       var normCoords = {};
       assert(actualCoords, 'Result does not have a coordinates property');
@@ -81,7 +81,7 @@ var spritesmithUtils = {
 
       // Assert that the returned properties equals the expected properties
       var actualProps = result.properties;
-      var expectedProps = require(expectedDir + '/' + filename);
+      var expectedProps = global.require(expectedDir + '/' + filename);
       assert.deepEqual(expectedProps, actualProps, 'Actual properties do not match expected properties');
     };
   },
@@ -217,7 +217,7 @@ describe('`spritesmith` using a custom engine via an object', function () {
   describe('processing a set of images', function () {
     spritesmithUtils.run({
       src: multipleSprites,
-      engine: require('phantomjssmith')
+      engine: global.require('phantomjssmith')
     });
 
     it('has no errors', spritesmithUtils.assertNoError());
@@ -229,7 +229,7 @@ describe('`spritesmith` using a custom engine via an object', function () {
 // Test for https://github.com/twolfson/gulp.spritesmith/issues/22
 var canvassmith;
 try {
-  canvassmith = require('canvassmith');
+  canvassmith = global.require('canvassmith');
 } catch (err) { /* Ignore error */ }
 var describeIfCanvassmithExists = canvassmith ? describe : describe.skip;
 describeIfCanvassmithExists('`spritesmith` using `canvassmith`', function () {

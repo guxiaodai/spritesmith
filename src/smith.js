@@ -20,7 +20,7 @@ function Spritesmith(params) {
   if (typeof engineName === 'string') {
     // Attempt to resolve the engine to verify it is installed at all
     try {
-      require.resolve(engineName);
+      global.require.resolve(engineName);
     } catch (err) {
       /* eslint-disable no-console */
       console.error('Attempted to find spritesmith engine "' + engineName + '" but could not.');
@@ -34,7 +34,7 @@ function Spritesmith(params) {
 
     // Attempt to load the engine
     try {
-      Engine = require(engineName);
+      Engine = global.require(engineName);
       if (typeof Engine !== 'function') {
         Engine = Engine.default;
       }
@@ -143,7 +143,7 @@ Spritesmith.prototype = {
 
     // Then, output the coordinates
     // Export and saved packedObj for later
-    packedObj = layer['export']();
+    packedObj = layer.export();
 
     // Extract the coordinates
     var coordinates = {};
@@ -207,7 +207,7 @@ Spritesmith.prototype = {
         }
 
         // Export our canvas
-        var exportStream = canvas['export'](exportOpts);
+        var exportStream = canvas.export(exportOpts);
         exportStream.on('error', function forwardError (err) {
           imageStream.emit('error', err);
         });
